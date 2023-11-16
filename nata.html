@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Contagem Regressiva para o Natal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="relogio">
+    <h1>Contagem Regressiva para o Natal</h1>
+    <div id="timer">
+      <span id="days"></span> dias
+      <span id="hours"></span> horas
+      <span id="minutes"></span> minutos
+      <span id="seconds"></span> segundos
+    </div>
+</div>
+
+<video autoplay muted loop id="videoBG">
+    <source src="img/video.mp4" type="video/mp4">
+</video>
+<style>
+ body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.relogio{
+    margin-left: 70vh;
+    top: 40vh;
+    color: white;
+    position: absolute;
+}
+#videoBG {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.countdown {
+  text-align: center;
+}
+
+#timer {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+
+</style>
+
+
+<script>
+    var relogio = setInterval(function(){
+  const currentDate = new Date();
+  const christmasDate = new Date(currentDate.getFullYear(), 11, 25); 
+
+  
+  const difference = christmasDate - currentDate;
+
+  const seconds = Math.floor((difference / 1000) % 60);
+  const minutes = Math.floor((difference / 1000 / 60) % 60);
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+  
+  document.getElementById('days').innerText = days;
+  document.getElementById('hours').innerText = hours;
+  document.getElementById('minutes').innerText = minutes;
+  document.getElementById('seconds').innerText = seconds;
+})
+
+
+setInterval(relogio, 1000);
+
+
+countdown();
+
+</script>
+</body>
+</html>
